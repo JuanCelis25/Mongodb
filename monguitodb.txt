@@ -1,0 +1,55 @@
+use judaresFutbolCol
+
+db.createCollection("Millonarios")
+db.createCollection("Nacional")
+db.createCollection("America")
+show collections
+
+--Creacion de los documents y de los fiels y sus valores 
+
+db.Millonarios.insertMany([{"_id":1, "nombre":"Daniel", "apellido":"Ruiz", "estatura":171, "peso":62},{"_id":2, "nombre":"Andres", "apellido":"Llinas", "estatura":191, "peso":73},{"_id":3, "nombre":"David", "apellido":"Macalister", "estatura":177, "peso":78},{"_id":4, "nombre":"Luis", "apellido":"Ruiz", "estatura":187, "peso":77},{"_id":5, "nombre":"Daniel", "apellido":"Cataño", "estatura":174, "peso":75},{"_id":6, "nombre":"Alvaro", "apellido":"Montero", "estatura":200, "peso":92},{"_id":7, "nombre":"Juan", "apellido":"Vargas", "estatura":192, "peso":88},{"_id":8, "nombre":"Oscar", "apellido":"Vanegas", "estatura":185, "peso":74},{"_id":9, "nombre":"Jader", "apellido":"Valencia", "estatura":192, "peso":72},{"_id":10, "nombre":"Juan", "apellido":"Pereira", "estatura":181, "peso":75}])
+
+db.Nacional.insertMany([{"_id":1, "nombre":"Jarlan", "apellido":"Barrera", "estatura":173, "peso":68},{"_id":2, "nombre":"Jefferson", "apellido":"Duque", "estatura":183, "peso":80},{"_id":3, "nombre":"Kevin", "apellido":"Mier", "estatura":190, "peso":73},{"_id":4, "nombre":"Dorlan", "apellido":"Pabon", "estatura":168, "peso":68},{"_id":5, "nombre":"Sebastian", "apellido":"Gomez", "estatura":172, "peso":72},{"_id":6, "nombre":"Andres", "apellido":"Roman", "estatura":173, "peso":80},{"_id":7, "nombre":"Jhon", "apellido":"Duque", "estatura":173, "peso":71},{"_id":8, "nombre":"Aldair", "apellido":"Quintana", "estatura":195, "peso":85},{"_id":9, "nombre":"Yerson", "apellido":"Candelo", "estatura":170, "peso":65},{"_id":10, "nombre":"Alvaro", "apellido":"Angulo", "estatura":175, "peso":72}])
+
+db.America.insertMany([{"_id":1, "nombre":"Lago", "apellido":"Falque", "estatura":174, "peso":69},{"_id":2, "nombre":"Adrian", "apellido":"Ramos", "estatura":185, "peso":78},{"_id":3, "nombre":"Gianfranco", "apellido":"Peña", "estatura":190, "peso":78},{"_id":4, "nombre":"Juan", "apellido":"Perez", "estatura":178, "peso":75},{"_id":5, "nombre":"Marlon", "apellido":"Torres", "estatura":180, "peso":70},{"_id":6, "nombre":"Brayan", "apellido":"Vera", "estatura":180, "peso":77},{"_id":7, "nombre":"Daniel", "apellido":"Hernandez", "estatura":176, "peso":69},{"_id":8, "nombre":"Carlos", "apellido":"Sierra", "estatura":183, "peso":86},{"_id":9, "nombre":"Alejandro", "apellido":"Quintana", "estatura":192, "peso":79},{"_id":10, "nombre":"Joel", "apellido":"Graterol", "estatura":182, "peso":73}])
+
+--Consultas
+
+db.Millonarios.find({ estatura: {$eq:185}})
+
+db.Millonarios.find({ peso: {$lt:80})
+
+db.Nacional.find({ peso: {$gt:75}})
+
+db.Nacional.find({ nombre:{$nin:["Jefferson","Jhon"]}})
+
+db.America.find({ apellido:{$in:["Peña","Perez"]}})
+
+db.America.find({estatura: {$lte:200}})
+
+--Actualizar
+
+db.Millonarios.updateOne({nombre:"Daniel"}, {$set:{peso:65}})
+
+db.Nacional.updateOne({Apellido:"Duque"}, {$set:{Altura:190}})
+
+db.Millonarios.updateMany({nombre:{$eq:"Andres"}},{$set:{apellido: "Llinas Luis"}})
+
+db.Nacional.updateMany({peso:{$eq:80}},{$set:{peso: 85}})
+
+db.America.updateOne({"_id":{$eq:11}},{$set:{"nombre":"Ingeniero", "apellido":"Celis", "estatura":180, "peso":67}},{upsert:true})
+
+--Eliminar 
+
+db.Millonarios.findOneAndDelete({"nombre":"David"})
+
+db.Millonarios.findOneAndDelete({"apellido":"Cataño"})
+
+db.America.deleteMany({"estatura":{$eq:180}})
+
+db.America.deleteOne({"_id":5})
+
+db.Nacional.deleteOne({"_id":1})
+
+
+
