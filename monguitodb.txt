@@ -17,7 +17,7 @@ db.America.insertMany([{"_id":1, "nombre":"Lago", "apellido":"Falque", "estatura
 
 db.Millonarios.find({ estatura: {$eq:185}})
 
-db.Millonarios.find({ peso: {$lt:80})
+db.Millonarios.find({ peso: {$lt:80}})
 
 db.Nacional.find({ peso: {$gt:75}})
 
@@ -31,7 +31,7 @@ db.America.find({estatura: {$lte:200}})
 
 db.Millonarios.updateOne({nombre:"Daniel"}, {$set:{peso:65}})
 
-db.Nacional.updateOne({Apellido:"Duque"}, {$set:{Altura:190}})
+db.Nacional.updateOne({apellido:"Duque"}, {$set:{estatura:190}})
 
 db.Millonarios.updateMany({nombre:{$eq:"Andres"}},{$set:{apellido: "Llinas Luis"}})
 
